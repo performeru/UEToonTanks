@@ -9,28 +9,34 @@
 UCLASS()
 class TOONTANKS_API ABasePawn : public APawn
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
 public:
-	// Sets default values for this pawn's properties
-	ABasePawn();
+    // Sets default values for this pawn's properties
+    ABasePawn();
+
+    void HandleDestruction();
 
 protected:
-	void RotateTurret(FVector LookTarget);
-	void Fire();
+    void RotateTurret(FVector LookTarget);
+    void Fire();
 
 private:
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
-	class UCapsuleComponent* CapsuleComp;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
-	UStaticMeshComponent* BaseMesh;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
-	UStaticMeshComponent* TurretMesh;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
-	USceneComponent* ProjectileSpawnPoint;
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
+    class UCapsuleComponent* CapsuleComp;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Combat")
-	TSubclassOf<class AProjectile> ProjectileClass;
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
+    UStaticMeshComponent* BaseMesh;
 
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
+    UStaticMeshComponent* TurretMesh;
 
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
+    USceneComponent* ProjectileSpawnPoint;
+
+    UPROPERTY(EditDefaultsOnly, Category = "Combat")
+    TSubclassOf<class AProjectile> ProjectileClass;
+
+    UPROPERTY(EditAnywhere, Category = "Combat")
+    class UParticleSystem* DeathParticles;
 };
